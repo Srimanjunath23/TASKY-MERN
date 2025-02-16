@@ -1,0 +1,24 @@
+{
+  "name": "tasky-backend",
+  "version": "1.0.0",
+  "description": "A TASKY APPLICATION (TODO) USING MERN STACK",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Srimanjunath23/TASKY-MERN.git"
+  },
+  "author": "SRIMANJUNATH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Srimanjunath23/TASKY-MERN/issues"
+  },
+  "homepage": "https://github.com/Srimanjunath23/TASKY-MERN#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1",
+    "nodemon": "^3.1.9"
+  }
+}
