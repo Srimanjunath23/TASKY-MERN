@@ -7,8 +7,14 @@ const mongoose=require('mongoose')
 // creating express app
 const app=express();
 
+//using cors
+
+const cors=require('cors');
+
 //middleware
-app.use(express.json())
+app.use(express.json());
+
+app.use(cors());
 
 
 //creating schema
@@ -117,6 +123,6 @@ app.delete('/tasky/:id',async (req,res)=>{
 })
 //start the server
 
-app.listen(3000,()=>{
-    console.log("Server is running on port:3000");
+app.listen(8000,()=>{
+    console.log("Server is running on port:8000");
 })
