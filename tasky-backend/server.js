@@ -116,7 +116,7 @@ app.delete('/tasky/:id',async (req,res)=>{
     try {
         const id=req.params.id
         await taskymodal.findByIdAndDelete(id);
-        res.status(200).end
+        res.status(200).end()
     } catch (error) {
         res.status(500).json({message:error.message});
     }
