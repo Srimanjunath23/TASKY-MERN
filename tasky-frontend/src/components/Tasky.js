@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Tasky = () => {
   const [title,settitle]=useState("");
@@ -20,22 +20,32 @@ const Tasky = () => {
           if(res.ok){
             setentireTask([...entireTask,{title,description}]);
             setsuccessmsg("Item added successfuly :)")
-            setTimeout(()=>{
-              setsuccessmsg("")
-            },3000)
+            setTimeout(()=>
+            setsuccessmsg(""),3000)
 
           }
           else{
-            seterror("Unable to add Item :(")
-            setTimeout(()=>{
-              seterror("")
-            },3000)
+            seterror("Unable to add Item :(");
+            setTimeout(()=>
+              seterror(""),3000)
+
           }
         }
       )
     }
+   
 
   }
+  useEffect(()=>{
+    displayItems();
+
+  },[])
+
+  function displayItems(){
+    fetch(api+'/tasky').then((res)=>res.json()).then((res)=>setentireTask(res))
+  
+  }
+
 
   return (
     
@@ -47,13 +57,30 @@ const Tasky = () => {
 <div className='row '>
   <h3>Add Item </h3>
   
-  <div className='input-group d-flex gap-2 '>
+<div className='input-group d-flex gap-2 '>
     <input placeholder='Add Title' className='form-control rounded w-25 col-12 col-sm-6' type='text' onChange={(e)=>settitle(e.target.value)}/>
     <input placeholder='Add Description' className='form-control rounded w-25 col-12 col-sm-6' type='text' onChange={(e)=>setdescription(e.target.value)}/>
     <button className='btn btn-warning rounded col-12 col-sm-auto ' onClick={addItem}>Add Item</button>
-  </div>
+</div>
  {successmsg && <p className='text-success'>{successmsg}</p>} 
  {error && <p className='text-danger'>{error}</p>} 
+</div>
+<br/>
+
+<div className='row p-4' >
+  {
+    entireTask.map((item)=>
+      <div className="card me-3  d-flex gap-2" style={{width:'18rem'}}>
+     <div className="card-body">
+    <h5 className="card-title">{item.title}</h5>
+    <p className="card-text">{item.description}</p>
+    <button className='btn btn-warning me-2'>Edit</button><button className='btn btn-danger'>Delete</button>
+  </div>
+</div>
+    )
+  }
+
+
 </div>
 </>
     
